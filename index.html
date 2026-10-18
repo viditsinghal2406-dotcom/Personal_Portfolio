@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vidit Singhal | Portfolio</title>
+<meta name="description" content="Vidit Singhal, integrated B.Tech Data Science student at NMIMS MPSTME Mumbai. Simulations, ML apps, trading tools and full-stack projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080d; --panel:#0e131c; --panel2:#131a26; --line:#223048;
+  --gold:#f5b83d; --cyan:#2ee6c5; --violet:#8b7bff; --red:#ff5d73;
+  --text:#e8eef9; --muted:#8fa0ba;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --sans:'Space Grotesk',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;max-width:100%}
+a{color:inherit}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;transition:opacity .3s}
+main,header,footer,nav{position:relative;z-index:1}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+section{padding:96px 0}
+.mono{font-family:var(--mono)}
+h2{font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.15;margin-bottom:12px}
+.kicker{font-family:var(--mono);color:var(--cyan);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;display:block}
+.lead{color:var(--muted);max-width:60ch}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(6,8,13,.72);backdrop-filter:blur(10px);border-bottom:1px solid rgba(34,48,72,.6)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-family:var(--mono);font-weight:600;color:var(--gold);text-decoration:none}
+nav ul{display:flex;gap:18px;list-style:none;font-family:var(--mono);font-size:.78rem}
+nav ul a{text-decoration:none;color:var(--muted)}
+nav ul a:hover{color:var(--cyan)}
+
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:96px 0 64px}
+.hero h1{font-size:clamp(2.6rem,9vw,5.6rem);line-height:1.02;letter-spacing:-.03em}
+.hero h1 span{background:linear-gradient(90deg,var(--gold),#ffdf8a 45%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--muted);margin:18px 0 26px;max-width:34ch}
+.chip{display:inline-block;font-family:var(--mono);font-size:.75rem;border:1px solid var(--line);background:rgba(14,19,28,.7);padding:5px 10px;border-radius:999px;color:var(--muted)}
+.chip b{color:var(--cyan);font-weight:600}
+.btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-size:.85rem;padding:12px 20px;border-radius:10px;border:1px solid var(--gold);color:#1a1200;background:var(--gold);font-weight:600;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,184,61,.3)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.scrollhint{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-top:34px}
+
+.ticker{overflow:hidden;border-block:1px solid var(--line);background:rgba(14,19,28,.75);padding:10px 0;position:relative;z-index:1}
+.tk{display:flex;gap:34px;width:max-content;font-family:var(--mono);font-size:.78rem;color:var(--cyan);animation:tk 38s linear infinite}
+.tk span::before{content:"\25C6 ";color:var(--gold)}
+@keyframes tk{to{transform:translateX(-50%)}}
+/* about */
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:start}
+.card{background:rgba(14,19,28,.82);border:1px solid var(--line);border-radius:16px;padding:22px;backdrop-filter:blur(6px)}
+.card h3{font-size:1rem;color:var(--gold);font-family:var(--mono);margin-bottom:10px}
+.card p+p{margin-top:12px}
+.facts{list-style:none;display:grid;gap:12px;font-size:.95rem}
+.facts li{display:flex;gap:10px}
+.facts li span:first-child{color:var(--cyan);font-family:var(--mono);min-width:64px;font-size:.78rem;padding-top:3px}
+
+/* chain */
+.chain{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px;perspective:1200px}
+.block{position:relative;text-align:left;cursor:pointer;color:inherit;font:inherit;background:linear-gradient(160deg,rgba(19,26,38,.95),rgba(10,14,22,.95));border:1px solid var(--line);border-radius:16px;padding:20px 20px 46px;transform-style:preserve-3d;transition:transform .12s ease-out,border-color .2s,box-shadow .2s;will-change:transform}
+.block:hover,.block:focus-visible{border-color:var(--gold);box-shadow:0 18px 50px rgba(245,184,61,.12);outline:none}
+.block .no{font-family:var(--mono);font-size:.72rem;color:var(--cyan);display:flex;justify-content:space-between;gap:8px}
+.block h3{font-size:1.2rem;margin:10px 0 6px;transform:translateZ(30px)}
+.block p{color:var(--muted);font-size:.9rem;transform:translateZ(14px)}
+.block .hash{font-family:var(--mono);font-size:.66rem;color:#5c6f8e;margin-top:14px;word-break:break-all;line-height:1.5}
+.block .go{position:absolute;right:16px;bottom:14px;font-family:var(--mono);font-size:.7rem;color:var(--gold)}
+.block.demo::after{content:"LIVE DEMO";position:absolute;left:20px;bottom:13px;font-family:var(--mono);font-size:.6rem;color:#06210f;background:var(--cyan);padding:2px 7px;border-radius:99px;font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font-family:var(--mono);font-size:.66rem;padding:3px 8px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+#cloud{position:relative;height:360px;max-width:420px;width:100%;margin:auto}
+#cloud span{position:absolute;left:50%;top:50%;font-family:var(--mono);font-weight:600;white-space:nowrap;color:var(--gold);will-change:transform,opacity;cursor:default}
+.int-list{display:grid;gap:12px}
+.int{display:flex;gap:14px;align-items:flex-start}
+.int i{font-style:normal;font-size:1.4rem}
+.int b{display:block}
+.int small{color:var(--muted);font-size:.88rem}
+
+/* contact */
+.contact{text-align:center}
+.contact .lead{margin:0 auto 26px}
+.contact .row{justify-content:center}
+footer{padding:28px 0 40px;text-align:center;font-family:var(--mono);font-size:.74rem;color:#5c6f8e}
+
+footer{position:relative;overflow:hidden;padding-top:90px}
+footer .ft{position:relative;z-index:2}
+.smoke{position:absolute;left:0;right:0;bottom:0;height:200px;pointer-events:none;z-index:1}
+.smoke i{position:absolute;bottom:-40px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(160,190,230,.28),rgba(160,190,230,0) 70%);filter:blur(14px);opacity:0;animation:rise 7s ease-in infinite}
+.smoke i:nth-child(1){left:6%;animation-delay:0s}.smoke i:nth-child(2){left:16%;animation-delay:1.8s;width:120px;height:120px}
+.smoke i:nth-child(3){left:27%;animation-delay:3.4s}.smoke i:nth-child(4){left:38%;animation-delay:.9s;width:110px;height:110px}
+.smoke i:nth-child(5){left:48%;animation-delay:4.6s}.smoke i:nth-child(6){left:58%;animation-delay:2.6s;width:130px;height:130px}
+.smoke i:nth-child(7){left:68%;animation-delay:5.5s}.smoke i:nth-child(8){left:78%;animation-delay:1.4s;width:100px;height:100px}
+.smoke i:nth-child(9){left:88%;animation-delay:3.9s}.smoke i:nth-child(10){left:94%;animation-delay:6.2s;width:80px;height:80px}
+@keyframes rise{0%{opacity:0;transform:translate(0,0) scale(.6)}20%{opacity:.9}100%{opacity:0;transform:translate(30px,-190px) scale(1.9)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+/* modal */
+#modal{position:fixed;inset:0;z-index:50;display:none;background:rgba(3,5,9,.82);backdrop-filter:blur(8px);overflow-y:auto;padding:24px 12px}
+#modal.open{display:block}
+.sheet{max-width:860px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.sheet header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.sheet h3{font-size:clamp(1.4rem,4vw,2rem);line-height:1.2}
+.x{background:none;border:1px solid var(--line);color:var(--text);width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:1.1rem;flex-shrink:0}
+.x:hover{border-color:var(--red);color:var(--red)}
+.sheet h4{font-family:var(--mono);font-size:.78rem;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin:22px 0 10px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;list-style:none;counter-reset:s}
+.flow li{counter-increment:s;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:.84rem;position:relative;opacity:0;animation:stepin .5s forwards}
+.flow li::before{content:"0" counter(s);display:block;font-family:var(--mono);color:var(--gold);font-size:.72rem;margin-bottom:4px}
+.flow li:nth-child(2){animation-delay:.12s}.flow li:nth-child(3){animation-delay:.24s}.flow li:nth-child(4){animation-delay:.36s}
+@keyframes stepin{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.demo-box{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px}
+.demo-box label{display:block;font-family:var(--mono);font-size:.72rem;color:var(--muted);margin:10px 0 4px}
+.demo-box input[type=number]{width:100%;background:#0a0e16;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:8px;font-family:var(--mono)}
+.demo-box input[type=range]{width:100%;accent-color:var(--gold)}
+.demo-box canvas{width:100%;height:auto;display:block;border-radius:10px;background:#0a0e16;border:1px solid var(--line)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.out{font-family:var(--mono);font-size:.82rem;margin-top:10px;line-height:1.8}
+.out b{color:var(--gold)}
+.good{color:var(--cyan)}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.74rem;margin-top:10px}
+th,td{padding:5px 6px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:400}
+.mini{font-family:var(--mono);font-size:.78rem;background:#0a0e16;color:var(--gold);border:1px solid var(--line);padding:8px 12px;border-radius:8px;cursor:pointer;margin:8px 8px 0 0}
+.mini:hover{border-color:var(--gold)}
+.mini.on{background:var(--gold);color:#1a1200}
+.note{font-size:.76rem;color:#6a7c99;margin-top:10px;font-style:italic}
+.chat{height:240px;overflow-y:auto;background:#0a0e16;border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:88%;background:#16253a;border-radius:12px 12px 12px 3px;padding:8px 11px;font-size:.8rem;font-family:var(--mono);animation:pop .2s}
+.msg.warn{background:#3a1820;color:#ffb3be}
+.bars{display:flex;align-items:flex-end;gap:3px;height:70px;margin:10px 0}
+.bars i{flex:1;background:var(--cyan);border-radius:2px 2px 0 0;min-height:3px;transition:height .3s}
+.bars i.low{background:var(--red)}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.slot{font-family:var(--mono);font-size:.76rem;padding:9px 4px;border-radius:8px;border:1px solid var(--line);background:#0a0e16;color:var(--text);cursor:pointer}
+.slot:disabled{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.slot.sel{background:var(--cyan);color:#06210f;border-color:var(--cyan)}
+
+@media(max-width:860px){
+  .chain{grid-template-columns:1fr 1fr}
+  .about-grid,.skills-grid{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  nav ul{gap:11px;font-size:.68rem}
+  .chain{grid-template-columns:1fr}
+  section{padding:72px 0}
+  .two{grid-template-columns:1fr}
+  .slots{grid-template-columns:repeat(3,1fr)}
+  .flow{grid-template-columns:1fr}
+  .hero{padding-top:260px;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">vidit.eth</a>
+    <ul>
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">chain</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <div class="wrap">
+      <span class="chip">block height <b id="height">000000</b> &middot; still mining</span>
+      <h1 style="margin-top:18px">Hi, I'm<br><span>Vidit Singhal</span></h1>
+      <p class="sub">Data science student. I build things that simulate, predict and trade.</p>
+      <div class="row">
+        <a class="btn" href="#projects">Explore the chain</a>
+        <a class="btn ghost" href="#contact">Say hi</a>
+      </div>
+      <p class="scrollhint">scroll to mine my projects &darr;</p>
+    </div>
+  </header>
+
+  <div class="ticker" aria-hidden="true"><div class="tk"><span>NIFTY OPTIONS</span><span>MONTE CARLO</span><span>HASH RATE 100 TH/s</span><span>MARKOV CHAINS</span><span>EMI</span><span>POISSON</span><span>k-NN</span><span>STREAMLIT</span><span>DOCKER</span><span>EQUITY PORTFOLIO</span><span>VERUS</span><span>WOWNERO</span><span>MUMBAI</span><span>NIFTY OPTIONS</span><span>MONTE CARLO</span><span>HASH RATE 100 TH/s</span><span>MARKOV CHAINS</span><span>EMI</span><span>POISSON</span><span>k-NN</span><span>STREAMLIT</span><span>DOCKER</span><span>EQUITY PORTFOLIO</span><span>VERUS</span><span>WOWNERO</span><span>MUMBAI</span></div></div>
+
+  <section id="about">
+    <div class="wrap">
+      <span class="kicker">// 01 genesis block</span>
+      <h2>About me</h2>
+      <div class="about-grid">
+        <div class="card reveal">
+          <p>I'm Vidit, a fifth-year integrated B.Tech Data Science student at NMIMS MPSTME in Mumbai. I like turning maths into things that actually run: Monte Carlo simulations, ML apps, trading tools and a few full-stack sites along the way.</p>
+          <p>I also manage a personal equity portfolio, so markets are a hobby that keeps leaking into my projects. I also like hands-on crypto: I've configured Verus and Wownero miners on my own PC. Right now I'm building a bigger ML project portfolio and learning something new on every one of them.</p>
+          <p>I care about clear explanations, clean code and projects that people can click through and understand in a minute.</p>
+        </div>
+        <div class="card reveal">
+          <h3>quick facts</h3>
+          <ul class="facts">
+            <li><span>study</span><span>Integrated B.Tech, Data Science (2022 to 2028)</span></li>
+            <li><span>campus</span><span>Head of SMCW at Data Mavericks</span></li>
+            <li><span>also</span><span>Core Member, Microsoft Students Club MPSTME</span></li>
+            <li><span>base</span><span>Mumbai, India</span></li>
+            <li><span>mode</span><span>Eager to learn, always shipping something</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <span class="kicker">// 02 the chain</span>
+      <h2>Projects, mined block by block</h2>
+      <p class="lead">Each block is one project. Tap a block to see how it works, and try the mini demo on the ones tagged LIVE DEMO.</p>
+      <div class="chain" id="chain"></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <span class="kicker">// 03 toolkit</span>
+      <h2>Skills and interests</h2>
+      <div class="skills-grid">
+        <div id="cloud" aria-label="Skills"></div>
+        <div class="int-list">
+          <div class="int reveal"><i>📈</i><div><b>Markets and algo trading</b><small>Equities, options, and rule-based strategies.</small></div></div>
+          <div class="int reveal"><i>🎲</i><div><b>Stochastic modelling</b><small>Markov chains, Poisson processes, Monte Carlo.</small></div></div>
+          <div class="int reveal"><i>🤖</i><div><b>Machine learning apps</b><small>From dataset upload to evaluation metrics in one UI.</small></div></div>
+          <div class="int reveal"><i>⛏️</i><div><b>Crypto and automation</b><small>Verus and Wownero miners on my PC, plus bots and alerts for monitoring.</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <span class="kicker">// 04 broadcast a transaction</span>
+      <h2>Let's connect</h2>
+      <p class="lead">Open to internships, collabs and project chats. The fastest way to reach me is LinkedIn.</p>
+      <div class="row">
+        <a class="btn" href="https://www.linkedin.com/in/viditsinghal2406" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/viditsinghal2406-dotcom" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="smoke" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="ft">mined in Mumbai by Vidit Singhal &middot; Three.js + vanilla JS &middot; powered by Red Bull and Monte Carlo</span></footer>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ---------- data ---------- */
+const GH='https://github.com/viditsinghal2406-dotcom';
+const PROJECTS=[
+ {t:'Credit Risk Engine',tag:'STPA / Series 2b',b:'A stochastic credit-risk simulation using Markov processes, Poisson processes and Monte Carlo runs.',stack:['Python','Markov','Poisson','Monte Carlo'],demo:'credit',
+  steps:['Define credit states and a transition matrix','Draw random default events from a Poisson process','Run thousands of Monte Carlo paths','Read off expected loss and tail risk']},
+ {t:'EMI Wizard',tag:'Finance tool',b:'A loan calculator that computes EMIs, generates repayment schedules and compares loan options.',stack:['JavaScript','Finance maths'],demo:'emi',
+  steps:['Enter principal, rate and tenure','Apply the EMI formula','Split each payment into interest and principal','Compare two loans side by side']},
+ {t:'AlgoVeda',tag:'HealthTech platform',b:'Practice management platform for Ayurvedic dietitians: patient records, nutrient analysis and diet plans tailored to Ayurvedic principles.',stack:['Web app','Nutrient analysis','Ayurveda'],demo:null,
+  steps:['Dietitian adds a patient profile','Foods are analysed for nutrients','Plan is tailored to Ayurvedic principles','Dietitian reviews and shares the plan']},
+ {t:'PC Mining Lab',tag:'Hands-on crypto',b:'I set up and configured different cryptocurrency miners on my own PC, including a Verus miner (VerusHash) and a Wownero miner (RandomWOW), and learned how each algorithm uses the hardware.',stack:['VerusMiner','Wownero miner','CPU mining','Config'],demo:null,
+  steps:['Pick a coin and its algorithm','Configure the miner: pool, wallet, threads','Run it and watch the hash rate','Tune settings and keep an eye on stability']},
+ {t:'Vingal Mining Alerts',tag:'Telegram bot',b:'A Python-based Telegram bot for cryptocurrency mining alerts, log monitoring and hash-rate tracking.',stack:['Python','Telegram Bot','Logs'],demo:'mining',
+  steps:['Read rig logs and hash-rate stats','Compare against your threshold','Detect drops or errors','Push an alert to Telegram']},
+ {t:'Interactive ML Classification App',tag:'Streamlit',b:'A Streamlit app for uploading datasets, training classification models and viewing evaluation metrics.',stack:['Python','Streamlit','ML'],demo:'ml',
+  steps:['Upload a CSV dataset','Pick features and a model','Train on a train/test split','View accuracy and confusion matrix']},
+ {t:'Ask a Doctor',tag:'Full-stack',b:'A doctor appointment-booking website with appointment slots, built with HTML, CSS, JavaScript, PHP and MySQL.',stack:['HTML','CSS','JavaScript','PHP','MySQL'],demo:'doctor',
+  steps:['Browse doctors by specialty','Pick a free slot','PHP validates the request','MySQL stores the booking']},
+ {t:'Shopverse',tag:'E-commerce frontend',b:'An e-commerce website focused on frontend styling, page layouts and image integration.',stack:['HTML','CSS','Layouts'],demo:null,
+  steps:['Plan the page layouts','Style product cards and grids','Integrate product imagery','Make it responsive']},
+ {t:'React + Vite App',tag:'Frontend',b:'A frontend application using React, Vite and TypeScript, including a strategy-scoring component.',stack:['React','Vite','TypeScript'],demo:null,
+  steps:['Scaffold with Vite and TypeScript','Build typed React components','Feed strategy inputs into a scoring component','Show the score live in the UI']}
+];
+const MORE=null;
+
+function hash(s){let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
+ h1=Math.imul(h1^h1>>>16,2246822507)^Math.imul(h2^h2>>>13,3266489909);h2=Math.imul(h2^h2>>>16,2246822507)^Math.imul(h1^h1>>>13,3266489909);
+ return ((h2>>>0).toString(16).padStart(8,'0')+(h1>>>0).toString(16).padStart(8,'0'))}
+PROJECTS.forEach((p,i)=>{p.hash=hash(p.t);p.prev=i?PROJECTS[i-1].hash:'0'.repeat(16)});
+
+/* ---------- chain UI ---------- */
+const $=s=>document.querySelector(s);
+const chain=$('#chain');
+PROJECTS.forEach((p,i)=>{
+  const b=document.createElement('button');
+  b.className='block reveal'+(p.demo?' demo':'');
+  b.setAttribute('aria-label','Open '+p.t);
+  b.innerHTML=`<div class="no"><span>BLOCK #${String(i+1).padStart(3,'0')}</span><span>${p.tag}</span></div>
+   <h3>${p.t}</h3><p>${p.b}</p>
+   <div class="tags">${p.stack.map(s=>`<span>${s}</span>`).join('')}</div>
+   <div class="hash">mined at height ${240598+i}<br>hash 0x${p.hash}<br>prev 0x${p.prev}</div><span class="go">open &rarr;</span>`;
+  b.addEventListener('click',()=>openModal(i));
+  if(matchMedia('(hover:hover)').matches){
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      b.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg) translateZ(10px)`});
+    b.addEventListener('mouseleave',()=>{b.style.transform=''});
+  }
+  chain.appendChild(b);
+});
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+function observe(){document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
+observe();
+
+/* small personal touches */
+const T0=document.title;
+document.addEventListener('visibilitychange',()=>{document.title=document.hidden?'Vidit is still mining...':T0});
+/* height ticker */
+let height=240606;const hEl=$('#height');
+setInterval(()=>{height+=1+Math.floor(Math.random()*3);hEl.textContent=String(height).padStart(6,'0')},2200);
+hEl.textContent=String(height).padStart(6,'0');
+
+/* ---------- modal ---------- */
+let stop=null;
+function openModal(i){
+  const p=PROJECTS[i];
+  $('#sheet').innerHTML=`<header><div><span class="mono" style="color:var(--cyan);font-size:.75rem">BLOCK #${String(i+1).padStart(3,'0')} &middot; ${p.tag} &middot; mined by vidit.eth at height ${240598+i}</span>
+   <h3 id="mtitle">${p.t}</h3></div><button class="x" id="mx" aria-label="Close">&#10005;</button></header>
+   <p class="lead" style="margin-top:10px">${p.b}</p>
+   <div class="tags">${p.stack.map(s=>`<span>${s}</span>`).join('')}</div>
+   <h4>how it works</h4>
+   <ol class="flow">${p.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+   ${p.demo?'<h4>try it</h4><div class="demo-box" id="demo"></div>':''}
+   <div class="row" style="margin-top:22px"><a class="btn ghost" href="${GH}" target="_blank" rel="noopener">See my GitHub</a></div>`;
+  $('#modal').classList.add('open');document.body.style.overflow='hidden';$('#modal').scrollTop=0;
+  $('#mx').onclick=closeModal;$('#mx').focus();
+  if(p.demo){DEMOS[p.demo]($('#demo'))}
+}
+function closeModal(){if(stop){stop();stop=null}$('#modal').classList.remove('open');document.body.style.overflow=''}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* ---------- demos ---------- */
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const inr=n=>'\u20B9'+Math.round(n).toLocaleString('en-IN');
+
+const DEMOS={
+/* EMI */
+emi(el){
+  const loan=(id,P,r,y)=>`<div><b class="mono" style="color:var(--gold)">Loan ${id}</b>
+    <label>Amount</label><input type="number" id="p${id}" value="${P}" min="1000" step="10000">
+    <label>Interest % per year</label><input type="number" id="r${id}" value="${r}" step="0.1" min="0">
+    <label>Years</label><input type="number" id="y${id}" value="${y}" min="1" max="40"><div class="out" id="o${id}"></div></div>`;
+  el.innerHTML=`<div class="two">${loan('A',1000000,9.5,10)}${loan('B',1000000,8.4,15)}</div>
+   <div class="out" id="verdict"></div><div id="sched"></div>
+   <p class="note">EMI = P &times; r &times; (1+r)^n / ((1+r)^n - 1), with r as the monthly rate and n as months.</p>`;
+  const calc=(P,rate,yrs)=>{const r=rate/1200,n=yrs*12;const e=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);return{e,n,r,total:e*n,int:e*n-P}};
+  function upd(){
+    const v=id=>({P:+$('#p'+id).value||0,r:+$('#r'+id).value||0,y:+$('#y'+id).value||1});
+    const A=v('A'),B=v('B'),a=calc(A.P,A.r,A.y),b=calc(B.P,B.r,B.y);
+    $('#oA').innerHTML=`EMI <b>${inr(a.e)}</b><br>Total interest ${inr(a.int)}`;
+    $('#oB').innerHTML=`EMI <b>${inr(b.e)}</b><br>Total interest ${inr(b.int)}`;
+    $('#verdict').innerHTML=a.int===b.int?'Same total cost.':`<span class="good">Loan ${a.int<b.int?'A':'B'} costs ${inr(Math.abs(a.int-b.int))} less in total interest.</span> Loan ${a.e<b.e?'A':'B'} has the lower monthly EMI.`;
+    let bal=A.P,rows='';
+    for(let m=1;m<=6&&bal>0;m++){const i=bal*a.r,pr=a.e-i;bal-=pr;rows+=`<tr><td>${m}</td><td>${inr(i)}</td><td>${inr(pr)}</td><td>${inr(Math.max(bal,0))}</td></tr>`}
+    $('#sched').innerHTML=`<table><tr><th>Loan A month</th><th>Interest</th><th>Principal</th><th>Balance</th></tr>${rows}</table>`;
+  }
+  el.querySelectorAll('input').forEach(i=>i.addEventListener('input',upd));upd();
+},
+/* Credit risk: Markov-modulated Poisson */
+credit(el){
+  el.innerHTML=`<canvas id="cc" width="640" height="260"></canvas>
+   <label>Base defaults per year (Poisson rate): <b id="lv">1.0</b></label><input type="range" id="lam" min="0.2" max="3" step="0.1" value="1">
+   <label>Chance the economy flips to stress each year: <b id="sv">15</b>%</label><input type="range" id="sw" min="0" max="50" step="1" value="15">
+   <button class="mini" id="rerun">Run 100 new paths</button>
+   <div class="out" id="co"></div>
+   <p class="note">Simplified illustration: a two-state Markov chain (normal or stress) sets the Poisson default rate, then Monte Carlo draws many futures. Stress triples the rate here.</p>`;
+  const cv=$('#cc'),cx=cv.getContext('2d'),H=10,N=100;
+  function run(){
+    const lam=+$('#lam').value,sw=+$('#sw').value/100;$('#lv').textContent=lam.toFixed(1);$('#sv').textContent=Math.round(sw*100);
+    const pois=L=>{const l=Math.exp(-L);let k=0,p=1;do{k++;p*=Math.random()}while(p>l);return k-1};
+    const paths=[];
+    for(let n=0;n<N;n++){let s=0,c=0;const path=[0];for(let y=1;y<=H;y++){if(s===0&&Math.random()<sw)s=1;else if(s===1&&Math.random()<.3)s=0;c+=pois(lam*(s?3:1));path.push(c)}paths.push(path)}
+    const fin=paths.map(p=>p[H]).sort((a,b)=>a-b),mean=fin.reduce((a,b)=>a+b,0)/N,p95=fin[Math.floor(N*.95)-1];
+    const max=Math.max(5,...fin),W=cv.width,Hh=cv.height,pad=26;
+    cx.clearRect(0,0,W,Hh);cx.strokeStyle='#223048';cx.fillStyle='#6a7c99';cx.font='11px JetBrains Mono,monospace';
+    for(let g=0;g<=4;g++){const y=Hh-pad-(Hh-2*pad)*g/4;cx.beginPath();cx.moveTo(pad,y);cx.lineTo(W-8,y);cx.stroke();cx.fillText(Math.round(max*g/4),2,y+4)}
+    cx.fillText('years',W-44,Hh-6);
+    const X=y=>pad+(W-pad-10)*y/H,Y=v=>Hh-pad-(Hh-2*pad)*v/max;
+    paths.forEach(p=>{cx.beginPath();p.forEach((v,y)=>y?cx.lineTo(X(y),Y(v)):cx.moveTo(X(y),Y(v)));cx.strokeStyle='rgba(46,230,197,.14)';cx.lineWidth=1;cx.stroke()});
+    cx.beginPath();for(let y=0;y<=H;y++){const m=paths.reduce((a,p)=>a+p[y],0)/N;y?cx.lineTo(X(y),Y(m)):cx.moveTo(X(y),Y(m))}cx.strokeStyle='#f5b83d';cx.lineWidth=2.5;cx.stroke();
+    $('#co').innerHTML=`Mean cumulative defaults after ${H} yrs: <b>${mean.toFixed(1)}</b><br>95th percentile (bad luck case): <b>${p95}</b>`;
+  }
+  $('#rerun').onclick=run;$('#lam').oninput=run;$('#sw').oninput=run;run();
+},
+/* Mining bot */
+mining(el){
+  el.innerHTML=`<div class="two"><div><label>Alert if hash rate falls below <b id="tv">85</b>% of normal</label><input type="range" id="th" min="50" max="98" value="85">
+    <div class="bars" id="bars"></div><div class="out">Hash rate <b id="hr">100.0</b> TH/s</div>
+    <button class="mini" id="fail">Simulate rig failure</button></div>
+    <div><div class="chat" id="chat"></div></div></div>
+   <p class="note">Fully simulated numbers. The real bot reads actual rig logs and stats, then sends the alert through the Telegram Bot API.</p>`;
+  const bars=$('#bars'),chat=$('#chat'),base=100;let vals=Array(28).fill(base),dip=0,alerted=false;
+  const say=(t,w)=>{const m=document.createElement('div');m.className='msg'+(w?' warn':'');m.textContent=t;chat.appendChild(m);chat.scrollTop=chat.scrollHeight};
+  say('Vingal bot online. Watching your rig.');
+  $('#fail').onclick=()=>{dip=6};
+  $('#th').oninput=e=>{$('#tv').textContent=e.target.value};
+  const id=setInterval(()=>{
+    let v=base+(Math.random()-.5)*6;if(dip>0){v=base*.4+Math.random()*5;dip--}
+    vals.push(v);vals.shift();$('#hr').textContent=v.toFixed(1);
+    const th=+$('#th').value;
+    bars.innerHTML=vals.map(x=>`<i class="${x<base*th/100?'low':''}" style="height:${Math.max(3,x/base*100*.7)}%"></i>`).join('');
+    if(v<base*th/100){if(!alerted){say(`ALERT: hash rate dropped to ${v.toFixed(1)} TH/s (${Math.round(v)}% of normal). Check your rig.`,true);alerted=true}}
+    else if(alerted){say(`Recovered: ${v.toFixed(1)} TH/s. All good.`);alerted=false}
+  },900);
+  stop=()=>clearInterval(id);
+},
+/* ML kNN */
+ml(el){
+  el.innerHTML=`<canvas id="mc" width="560" height="320"></canvas>
+   <label>Model: k-Nearest Neighbours, k = <b id="kv">5</b></label><input type="range" id="k" min="1" max="25" step="2" value="5">
+   <button class="mini" id="shuf">New dataset</button>
+   <div class="out" id="mo"></div>
+   <p class="note">Small in-browser version of the idea: generate data, train on 70 points, test on 30, show accuracy and the confusion matrix. Shaded areas are the model's decision regions.</p>`;
+  const cv=$('#mc'),cx=cv.getContext('2d');let seed=11,train=[],test=[];
+  function gen(){const r=rng(seed),g=()=>{const u=r()||1e-9,v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+    const pts=[];for(let i=0;i<100;i++){const c=i%2;pts.push({x:(c?.6:.4)+g()*.14,y:(c?.57:.43)+g()*.14,c})}
+    train=pts.slice(0,70);test=pts.slice(70)}
+  const pred=(x,y,k)=>{const d=train.map(p=>({d:(p.x-x)**2+(p.y-y)**2,c:p.c})).sort((a,b)=>a.d-b.d).slice(0,k);return d.reduce((a,b)=>a+b.c,0)*2>k?1:0};
+  function draw(){
+    const k=+$('#k').value;$('#kv').textContent=k;const W=cv.width,H=cv.height,cs=14;
+    for(let gx=0;gx<W;gx+=cs)for(let gy=0;gy<H;gy+=cs){cx.fillStyle=pred((gx+cs/2)/W,(gy+cs/2)/H,k)?'rgba(245,184,61,.16)':'rgba(46,230,197,.16)';cx.fillRect(gx,gy,cs,cs)}
+    train.forEach(p=>{cx.beginPath();cx.arc(p.x*W,p.y*H,4,0,7);cx.fillStyle=p.c?'#f5b83d':'#2ee6c5';cx.fill()});
+    const cm=[[0,0],[0,0]];test.forEach(p=>{const q=pred(p.x,p.y,k);cm[p.c][q]++;cx.beginPath();cx.arc(p.x*W,p.y*H,6,0,7);cx.strokeStyle='#fff';cx.lineWidth=1.5;cx.stroke()});
+    const acc=(cm[0][0]+cm[1][1])/test.length*100;
+    $('#mo').innerHTML=`Test accuracy: <b>${acc.toFixed(1)}%</b><br>Confusion matrix (rows actual, cols predicted): [${cm[0][0]}, ${cm[0][1]}] / [${cm[1][0]}, ${cm[1][1]}]<br><span style="color:var(--muted)">Dots filled = train, white rings = test. Small k overfits, large k smooths.</span>`;
+  }
+  $('#k').oninput=draw;$('#shuf').onclick=()=>{seed=Math.floor(Math.random()*1e6);gen();draw()};gen();draw();
+},
+/* Doctor */
+doctor(el){
+  const specs={'General Physician':['09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00'],
+    'Dermatologist':['10:00','10:45','11:30','12:15','16:00','16:45'],'Cardiologist':['09:15','10:15','11:15','15:15','16:15','17:15']};
+  el.innerHTML=`<div id="sp"></div><div class="slots" id="sl"></div><button class="mini" id="bk" disabled>Book appointment</button><div class="out" id="bo"></div>
+   <p class="note">Front-end demo of the slot picker. In the real project, PHP validates the request and MySQL stores the booking. Nothing is saved here.</p>`;
+  let cur='General Physician',sel=null;const r=rng(42);
+  const taken={};Object.keys(specs).forEach(k=>taken[k]=specs[k].map(()=>r()<.3));
+  function render(){
+    $('#sp').innerHTML=Object.keys(specs).map(k=>`<button class="mini ${k===cur?'on':''}" data-k="${k}">${k}</button>`).join('');
+    $('#sl').innerHTML=specs[cur].map((t,i)=>`<button class="slot ${sel===i?'sel':''}" data-i="${i}" ${taken[cur][i]?'disabled':''}>${t}</button>`).join('');
+    $('#bk').disabled=sel===null;
+    $('#sp').querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;sel=null;$('#bo').textContent='';render()});
+    $('#sl').querySelectorAll('button').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;render()});
+  }
+  $('#bk').onclick=()=>{$('#bo').innerHTML=`<span class="good">Booked: ${cur} at ${specs[cur][sel]}. (demo only)</span>`;taken[cur][sel]=true;sel=null;render()};
+  render();
+}
+};
+
+/* ---------- skills cloud (3D sphere of tags) ---------- */
+(function(){
+  const skills=['Python','SQL','MySQL','JavaScript','TypeScript','React','Vite','PHP','Django','Docker','Streamlit','HTML','CSS','Git','GitHub','Machine Learning','Monte Carlo','Markov Chains','Poisson','Telegram Bots','Algo Trading','Data Science'];
+  const box=$('#cloud'),els=[],n=skills.length;
+  skills.forEach((s,i)=>{const sp=document.createElement('span');sp.textContent=s;box.appendChild(sp);
+    const phi=Math.acos(1-2*(i+.5)/n),th=Math.PI*(1+Math.sqrt(5))*(i+.5);
+    els.push({sp,x:Math.cos(th)*Math.sin(phi),y:Math.cos(phi),z:Math.sin(th)*Math.sin(phi)})});
+  let ax=.004,ay=.006,tx=.004,ty=.006;
+  box.addEventListener('mousemove',e=>{const r=box.getBoundingClientRect();ty=((e.clientX-r.left)/r.width-.5)*.03;tx=-((e.clientY-r.top)/r.height-.5)*.03});
+  box.addEventListener('mouseleave',()=>{tx=.004;ty=.006});
+  function tick(){
+    ax+=(tx-ax)*.05;ay+=(ty-ay)*.05;
+    const R=Math.min(box.clientWidth,box.clientHeight)*.38,ca=Math.cos(ax),sa=Math.sin(ax),cb=Math.cos(ay),sb=Math.sin(ay);
+    els.forEach(o=>{
+      let y=o.y*ca-o.z*sa,z=o.y*sa+o.z*ca;o.y=y;o.z=z;
+      let x=o.x*cb+o.z*sb;z=-o.x*sb+o.z*cb;o.x=x;o.z=z;
+      const sc=.7+.45*(z+1)/2;
+      o.sp.style.transform=`translate(-50%,-50%) translate(${x*R*1.1}px,${o.y*R}px) scale(${sc})`;
+      o.sp.style.opacity=.3+.7*(z+1)/2;o.sp.style.fontSize='.82rem';
+      o.sp.style.color=z>0?'var(--gold)':'var(--cyan)';o.sp.style.zIndex=Math.round(z*10)+10;
+    });
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ---------- Three.js hero scene ---------- */
+(function(){
+  if(!window.THREE){return}
+  const canvas=$('#bg');
+  let renderer;try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true})}catch(e){return}
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;renderer.outputEncoding=THREE.sRGBEncoding;
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,100);cam.position.set(0,0,9);
+  scene.add(new THREE.AmbientLight(0xffffff,.55));
+  const l1=new THREE.PointLight(0xffd37a,1.6,40);l1.position.set(5,5,6);scene.add(l1);
+  const l2=new THREE.PointLight(0x2ee6c5,1.4,40);l2.position.set(-6,-3,5);scene.add(l2);
+  const l3=new THREE.PointLight(0x8b7bff,1,40);l3.position.set(0,6,-4);scene.add(l3);
+
+  /* env map so the gold has something to reflect */
+  try{
+    const ec=document.createElement('canvas');ec.width=1024;ec.height=512;const e=ec.getContext('2d');
+    const eg=e.createLinearGradient(0,0,0,512);eg.addColorStop(0,'#33405e');eg.addColorStop(.5,'#0b0f18');eg.addColorStop(1,'#4a3512');
+    e.fillStyle=eg;e.fillRect(0,0,1024,512);
+    e.fillStyle='#ffffff';[[120,110,220,70],[520,80,280,50],[800,150,150,90],[300,300,120,40]].forEach(r=>e.fillRect(r[0],r[1],r[2],r[3]));
+    e.fillStyle='#ffd98a';e.fillRect(620,260,240,40);
+    const envTex=new THREE.CanvasTexture(ec);envTex.mapping=THREE.EquirectangularReflectionMapping;
+    const pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromEquirectangular(envTex).texture;envTex.dispose();pm.dispose();
+  }catch(err){}
+
+  /* coin: embossed Bitcoin-style face, reeded edge */
+  const coin=new THREE.Group(),pivot=new THREE.Group();coin.add(pivot);scene.add(coin);
+  function paintFace(k,bump){
+    const S=1024,x=k.getContext('2d');
+    if(bump){x.fillStyle='#555';x.fillRect(0,0,S,S)}
+    else{const g=x.createRadialGradient(512,420,60,512,512,560);g.addColorStop(0,'#ffe9b0');g.addColorStop(.6,'#f0b43a');g.addColorStop(1,'#b97a12');x.fillStyle=g;x.fillRect(0,0,S,S)}
+    const hi=bump?'#fff':'#ffd877',lo=bump?'#000':'#8a5a08';
+    x.lineWidth=36;x.strokeStyle=hi;x.beginPath();x.arc(512,512,476,0,7);x.stroke();
+    x.lineWidth=6;x.strokeStyle=lo;x.beginPath();x.arc(512,512,450,0,7);x.stroke();
+    x.fillStyle=hi;for(let i=0;i<72;i++){const a=i/72*Math.PI*2;x.beginPath();x.arc(512+Math.cos(a)*408,512+Math.sin(a)*408,9,0,7);x.fill()}
+    x.lineWidth=10;x.strokeStyle=hi;x.beginPath();x.arc(512,512,354,0,7);x.stroke();
+    x.save();x.translate(512,525);x.rotate(-0.22);
+    x.font='700 400px "Space Grotesk",Arial,sans-serif';x.textAlign='center';x.textBaseline='middle';
+    if(!bump){x.fillStyle='#7a4d05';x.fillText('VS',7,9)}
+    x.fillStyle=bump?'#fff':'#ffe08a';x.fillText('VS',0,0);
+    x.lineWidth=bump?10:5;x.strokeStyle=bump?'#fff':'#a86f0c';x.strokeText('VS',0,0);
+    x.fillStyle=hi;[-60,50].forEach(dx=>{x.fillRect(dx-12,-305,24,80);x.fillRect(dx-12,225,24,80)});
+    x.restore();
+  }
+  const cvC=document.createElement('canvas'),cvB=document.createElement('canvas');cvC.width=cvC.height=cvB.width=cvB.height=1024;
+  paintFace(cvC,false);paintFace(cvB,true);
+  const colTex=new THREE.CanvasTexture(cvC),bumpTex=new THREE.CanvasTexture(cvB);
+  colTex.encoding=THREE.sRGBEncoding;colTex.anisotropy=8;bumpTex.anisotropy=8;
+  if(document.fonts&&document.fonts.load){document.fonts.load('700 100px "Space Grotesk"').then(()=>{paintFace(cvC,false);paintFace(cvB,true);colTex.needsUpdate=true;bumpTex.needsUpdate=true}).catch(()=>{})}
+  const faceMat=new THREE.MeshStandardMaterial({map:colTex,bumpMap:bumpTex,bumpScale:6,metalness:1,roughness:.3,envMapIntensity:1.25});
+  const ec2=document.createElement('canvas');ec2.width=64;ec2.height=8;const e2=ec2.getContext('2d');e2.fillStyle='#444';e2.fillRect(0,0,64,8);e2.fillStyle='#fff';e2.fillRect(0,0,28,8);
+  const reed=new THREE.CanvasTexture(ec2);reed.wrapS=THREE.RepeatWrapping;reed.repeat.set(90,1);
+  const edgeMat=new THREE.MeshStandardMaterial({color:0xe3a62b,metalness:1,roughness:.35,bumpMap:reed,bumpScale:2.5,envMapIntensity:1.2});
+  const body=new THREE.Mesh(new THREE.CylinderGeometry(1.6,1.6,.26,128,1,true),edgeMat);body.rotation.x=Math.PI/2;pivot.add(body);
+  const rimMat=new THREE.MeshStandardMaterial({color:0xf0b43a,metalness:1,roughness:.25,envMapIntensity:1.3});
+  [-1,1].forEach(s=>{const ring=new THREE.Mesh(new THREE.TorusGeometry(1.56,.05,20,128),rimMat);ring.position.z=s*.13;pivot.add(ring)});
+  const f1=new THREE.Mesh(new THREE.CircleGeometry(1.57,96),faceMat);f1.position.z=.13;pivot.add(f1);
+  const f2=f1.clone();f2.position.z=-.13;f2.rotation.y=Math.PI;pivot.add(f2);
+
+  /* orbiting chain of blocks */
+  const ring=new THREE.Group();ring.rotation.x=1.15;ring.rotation.z=.35;scene.add(ring);coin.add(ring);
+  const cubes=[],pts=[],NB=9;
+  for(let i=0;i<NB;i++){
+    const a=i/NB*Math.PI*2,R=3.5;
+    const m=new THREE.Mesh(new THREE.BoxGeometry(.5,.5,.5),new THREE.MeshStandardMaterial({color:0x0e1a2b,metalness:.4,roughness:.4,emissive:0x0a3b34,emissiveIntensity:.7}));
+    m.position.set(Math.cos(a)*R,Math.sin(a)*R,0);
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:0x2ee6c5})));
+    ring.add(m);cubes.push(m);pts.push(m.position.clone());
+  }
+  pts.push(pts[0].clone());
+  ring.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x2ee6c5,transparent:true,opacity:.35})));
+
+  /* particles */
+  const NP=700,pos=new Float32Array(NP*3);
+  for(let i=0;i<NP;i++){pos[i*3]=(Math.random()-.5)*40;pos[i*3+1]=(Math.random()-.5)*26;pos[i*3+2]=-Math.random()*22}
+  const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const stars=new THREE.Points(pg,new THREE.PointsMaterial({color:0x8fb4ff,size:.05,transparent:true,opacity:.7}));scene.add(stars);
+
+  let mx=0,my=0,sp=0,mobile=false;
+  addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  addEventListener('scroll',()=>{sp=Math.min(scrollY/innerHeight,1)},{passive:true});
+  function size(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();mobile=w<700}
+  size();addEventListener('resize',size);
+
+  const clock=new THREE.Clock();
+  function loop(){
+    const t=clock.getElapsedTime();
+    pivot.rotation.y=t*.8;pivot.rotation.x=Math.sin(t*.6)*.12;
+    ring.rotation.z=.35+t*.15;
+    cubes.forEach((m,i)=>{m.rotation.x=t*.6+i;m.rotation.y=t*.5+i});
+    stars.rotation.y=t*.01;
+    const tx=mobile?0:3.1*(1-sp*.55),ty=mobile?(1-sp)*2.7+(sp*-3):0;
+    const sc=mobile?.55:1;
+    coin.position.x+=(tx*(mobile?0:1)-coin.position.x)*.06;
+    coin.position.y+=((mobile?ty:0)+Math.sin(t*1.3)*.16-coin.position.y)*.06;l1.position.set(Math.cos(t*.6)*6,5,6);
+    coin.scale.setScalar(sc*(1-sp*.25));
+    coin.rotation.y+=((mx*.6)-coin.rotation.y)*.05;coin.rotation.x+=((my*.4)-coin.rotation.x)*.05;
+    canvas.style.opacity=1-sp*.55;
+    renderer.render(scene,cam);requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+</body>
+</html>
